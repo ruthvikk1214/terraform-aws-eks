@@ -1,6 +1,6 @@
 module "sg" {
 for_each = toset(var.sg_names)
-  source      = "../../terraform-aws-sg"
+  source      = "../terraform-aws-sg"
   project     = var.project
   environment = var.environment
   sg_name = each.value
