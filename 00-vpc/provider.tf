@@ -6,8 +6,8 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "terraform-eks-vpc"
-    key            = "roboshop-dev-vpc"
+    bucket         = "remote-state-roboshop-dev-rk1214"
+    key            = "terraform-aws-eks-vpc"
     region         = "us-east-1"
     ##dynamodb_table = "terraform-lock-table" # Optional: for locking
     encrypt        = true                   # Recommended
