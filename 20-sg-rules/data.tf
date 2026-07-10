@@ -42,3 +42,12 @@ data "aws_ssm_parameter" "eks_control_plane_sg_id" {
 data "aws_ssm_parameter" "eks_node_sg_id" {
   name = "/${var.project}/${var.environment}/eks_node_sg_id"
 }
+data "aws_ssm_parameter" "jenkins_sg_id" {
+  name = "/${var.project}/${var.environment}/jenkins_sg_id"
+}
+data "aws_ssm_parameter" "jenkins_agent_sg_id" {
+  name = "/${var.project}/${var.environment}/jenkins_agent_sg_id"
+}
+data "aws_ssm_parameter" "runner_sg_id" {
+  name = "/${var.project}/${var.environment}/runner_sg_id"
+}
