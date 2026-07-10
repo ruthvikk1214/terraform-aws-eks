@@ -10,4 +10,7 @@ locals {
   ingress_alb_sg_id = data.aws_ssm_parameter.ingress_alb_sg_id.value
   eks_control_plane_sg_id = data.aws_ssm_parameter.eks_control_plane_sg_id.value
   eks_node_sg_id = data.aws_ssm_parameter.eks_node_sg_id.value
+  jenkins_sg_id = data.aws_ssm_parameter.jenkins_sg_id.value
+  jenkins_agent_sg_id = data.aws_ssm_parameter.jenkins_agent_sg_id.value
+  runner_sg_id = data.aws_ssm_parameter.local_runner_sg_id.value
 }

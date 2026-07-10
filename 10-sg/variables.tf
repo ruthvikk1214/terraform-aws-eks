@@ -14,6 +14,6 @@ variable "sg_names" {
     "rabbitmq",
     "ingress_alb",
     "bastion",
-    "eks_control_plane","eks_node","jenkins","jenkins_agent"
+    "eks_control_plane","eks_node","jenkins","jenkins_agent", "runner"
   ]
 }

@@ -30,13 +30,10 @@ variable "sg_names" {
     "mysql",
     "rabbitmq",
     "cart",
-    "catalogue",
-    "user",
-    "shipping",
-    "payment",
+    
     "frontend",
     "backend_alb",
     "frontend_alb",
-    "bastion"
+    "bastion", 
   ]
 }
