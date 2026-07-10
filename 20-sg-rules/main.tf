@@ -46,7 +46,7 @@ resource "aws_security_group_rule" "rabbitmq_bastion" { #rabbitmq accepting conn
   source_security_group_id = local.bastion_sg_id
   security_group_id        = local.rabbitmq_sg_id
 }
-
+/* 
 resource "aws_security_group_rule" "ingress_alb_public" { #openvpn accepting connections from internet to serve requests
   type              = "ingress"
   from_port         = 443
@@ -54,7 +54,7 @@ resource "aws_security_group_rule" "ingress_alb_public" { #openvpn accepting con
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = local.ingress_alb_sg_id
-}
+} */
 
 resource "aws_security_group_rule" "openvpn_public_443" { #openvpn accepting connections from internet to serve requests
   type              = "ingress"
