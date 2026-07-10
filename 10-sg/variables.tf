@@ -12,8 +12,8 @@ variable "sg_names" {
     "redis",
     "mysql",
     "rabbitmq",
-    "ingress_alb",
+    "ingress",
     "bastion",
-    "eks_control_plane","eks_node","jenkins","jenkins_agent", "runner"
+    "eks_control_plane","eks_node","jenkins","jenkins_agent", "runner", "openvpn"
   ]
 }
