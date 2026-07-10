@@ -1,5 +1,5 @@
 data "aws_ssm_parameter" "jenkins_sg_id" {
-  name = "/roboshop.dev/jenkins_sg_id"
+  name = "/roboshop/dev/jenkins_sg_id"
 }
 data "aws_ssm_parameter" "jenkins_agent_sg_id" {
   name = "/roboshop/dev/jenkins_agent_sg_id"
