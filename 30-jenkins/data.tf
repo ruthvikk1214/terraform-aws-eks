@@ -1,8 +1,8 @@
 data "aws_ssm_parameter" "jenkins_sg_id" {
-  name = "/terraform-aws-eks/jenkins_sg_id"
+  name = "/roboshop.dev/jenkins_sg_id"
 }
 data "aws_ssm_parameter" "jenkins_agent_sg_id" {
-  name = "/terraform-aws-eks/jenkins_agent_sg_id"
+  name = "/roboshop/dev/jenkins_agent_sg_id"
 }
 data "aws_ami" "joindevops" {
   most_recent      = true
@@ -24,5 +24,5 @@ data "aws_ami" "joindevops" {
   }
 }
 data "aws_ssm_parameter" "private_subnet_ids" {
-  name = "/terraform-aws-eks/private_subnet_ids"
+  name = "/roboshop/dev/private_subnet_ids"
 }
