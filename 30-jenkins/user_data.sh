@@ -6,9 +6,9 @@ sudo pvresize /dev/nvme0n1p4
 sudo lvextend -r -l +100%FREE /dev/RootVG/varVol
 
 sudo curl -L https://pkg.jenkins.io/rpm-stable/jenkins.repo \
--o /etc/yum.repos.d/jenkins.repo
-sudo yum install fontconfig java-21-openjdk
-sudo yum install jenkins
+-o /etc/dnf.repos.d/jenkins.repo
+sudo dnf install fontconfig java-21-openjdk
+sudo dnf install jenkins
 sudo systemctl daemon-reload
 
 # Install eksctl
