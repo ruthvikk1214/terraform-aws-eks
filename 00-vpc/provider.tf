@@ -6,13 +6,13 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "remote-state-roboshop-dev-rk1214"
-    key            = "terraform-aws-eks-vpc"
-    region         = "us-east-1"
-    ##dynamodb_table = "terraform-lock-table" # Optional: for locking
-    encrypt        = true                   # Recommended
-    use_lockfile = true
-  }
+  bucket = "remote-state-roboshop-dev-rk1214"
+  key    = "terraform-aws-eks/vpc"
+  region = "us-east-1"
+
+  encrypt     = true
+  use_lockfile = true
+}
 }
 
 provider "aws" {
