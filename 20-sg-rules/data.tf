@@ -27,15 +27,7 @@ data "aws_ssm_parameter" "ingress_sg_id" {
   name = "/${var.project}/${var.environment}/ingress_sg_id"
 }
 
-data "aws_ssm_parameter" "frontend_alb_sg_id" {
-  name = "/${var.project}/${var.environment}/frontend_alb_sg_id"
-}
-data "aws_ssm_parameter" "openvpn_sg_id" {
-  name = "/${var.project}/${var.environment}/openvpn_sg_id"
-}
-data "aws_ssm_parameter" "ingress_alb_sg_id" {
-  name = "/${var.project}/${var.environment}/ingress_alb_sg_id"
-}
+
 data "aws_ssm_parameter" "eks_control_plane_sg_id" {
   name = "/${var.project}/${var.environment}/eks_control_plane_sg_id"
 }
