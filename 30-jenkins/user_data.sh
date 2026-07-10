@@ -4,9 +4,9 @@ set -e
 # -------------------------------
 # Extend /var filesystem
 # -------------------------------
-growpart /dev/nvme0n1 4
-pvresize /dev/nvme0n1p4
-lvextend -r -l +100%FREE /dev/RootVG/varVol
+# growpart /dev/nvme0n1 4
+# pvresize /dev/nvme0n1p4
+# lvextend -r -l +100%FREE /dev/RootVG/varVol
 
 # -------------------------------
 # Install required packages
