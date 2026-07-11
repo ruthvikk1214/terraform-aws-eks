@@ -26,8 +26,8 @@ chmod +x kubectl
 
 mv kubectl /usr/local/bin/
 # -------------------------------
-pvcreate /dev/nvme1n1
-vgextend RootVG /dev/nvme1n1
+pvcreate /dev/xvdf
+vgextend RootVG /dev/xvdf
 lvextend -r -l +100%FREE /dev/RootVG/varVol
 
 # -------------------------------
@@ -43,7 +43,7 @@ curl -fsSL https://pkg.jenkins.io/rpm-stable/jenkins.repo \
 -o /etc/yum.repos.d/jenkins.repo
 
 rpm --import https://pkg.jenkins.io/rpm-stable/jenkins.io-2023.key
-
+sudo dnf install -y java-21-openjdk
 dnf install -y jenkins
 
 systemctl daemon-reload
