@@ -15,3 +15,18 @@ resource "aws_instance" "jenkins" {
     Project     = var.project
   }
 }
+resource "aws_ebs_volume" "jenkins" {
+  availability_zone = aws_instance.jenkins.availability_zone
+  size              = 30
+  type              = "gp3"
+
+  tags = {
+    Name = "jenkins-extra-disk"
+  }
+}
+
+resource "aws_volume_attachment" "jenkins" {
+  device_name = "/dev/sdf"
+  volume_id   = aws_ebs_volume.jenkins.id
+  instance_id = aws_instance.jenkins.id
+}
