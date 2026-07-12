@@ -41,7 +41,6 @@ lvextend -r -l +100%FREE /dev/RootVG/varVol || true
 # -------------------------------
 # Install required packages
 # -------------------------------
-dnf update -y
 dnf install -y git curl unzip wget fontconfig java-21-openjdk
 
 # -------------------------------
