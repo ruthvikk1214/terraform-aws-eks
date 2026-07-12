@@ -1,10 +1,10 @@
 resource "aws_instance" "jenkins" {
-  ami                    = local.ami_id
-  instance_type          = "t2.micro"
-  subnet_id              = local.public_subnet_id
-  vpc_security_group_ids = [local.jenkins_sg_id]
-   user_data              = file("${path.module}/user_data.sh")
-   user_data_replace_on_change = true
+  ami                         = local.ami_id
+  instance_type               = "t2.micro"
+  subnet_id                   = local.public_subnet_id
+  vpc_security_group_ids      = [local.jenkins_sg_id]
+  user_data                   = file("${path.module}/user_data.sh")
+  user_data_replace_on_change = true
   root_block_device {
     volume_size = 30
     volume_type = "gp3"
@@ -26,11 +26,6 @@ resource "aws_ebs_volume" "jenkins" {
   }
 }
 
-# resource "aws_volume_attachment" "jenkins" {
-#   device_name = "/dev/sdf"
-#   volume_id   = aws_ebs_volume.jenkins.id
-#   instance_id = aws_instance.jenkins.id
-# }
 # resource "aws_instance" "sonarqube" {
 #   count = var.sonar ? 1 : 0
 #   ami           = local.sonar_ami_id
@@ -50,29 +45,30 @@ resource "aws_ebs_volume" "jenkins" {
 #     }
 #   )
 # }
-# resource "aws_instance" "jenkins_agent" {
-#   count = var.jenkins ? 1 : 0
-#   ami           = local.ami_id
-#   instance_type = "t3.micro"
-#   subnet_id = local.public_subnet_id
-#   vpc_security_group_ids = [ local.jenkins_agent_sg_id ]
-#   user_data = file("jenkins-agent.sh")
+resource "aws_instance" "jenkins_agent" {
+  count                  = var.jenkins ? 1 : 0
+  ami                    = local.ami_id
+  instance_type          = "t3.micro"
+  subnet_id              = local.public_subnet_id
+  vpc_security_group_ids = [local.jenkins_agent_sg_id]
+  user_data              = file("jenkins-agent.sh")
 
-#   root_block_device {
-#     volume_size = 50
-#     volume_type = "gp3"
-#     tags = merge(
-#       {
-#           Name = "${var.project}-${var.environment}-jenkins-agent"
-#       },
-#     local.common_tags
-#     )
-#   }
+  root_block_device {
+    volume_size = 50
+    volume_type = "gp3"
+    tags = merge(
+      {
+        Name = "${var.project}-${var.environment}-jenkins-agent"
+      },
+      local.common_tags
+    )
+  }
 
-#   tags = merge(
-#     {
-#         Name = "${var.project}-${var.environment}-jenkins-agent"
-#     },
-#     local.common_tags
-#   )
-# }
+  tags = merge(
+    {
+      Name = "${var.project}-${var.environment}-jenkins-agent"
+    },
+    local.common_tags
+  )
+}
+
