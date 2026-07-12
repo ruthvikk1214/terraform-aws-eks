@@ -31,11 +31,11 @@ data "aws_ssm_parameter" "public_subnet_ids" {
 }
 data "aws_ami" "sonarqube" {
   most_recent = true
-  owners      = ["679593333241"] # Solve DevOps
+  owners      = ["099720109477"] # Canonical
 
   filter {
     name   = "name"
-    values = ["SolveDevOps-SonarQube-Server-Ubuntu24.04-*"]
+    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
   }
 
   filter {
