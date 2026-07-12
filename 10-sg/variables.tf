@@ -14,6 +14,7 @@ variable "sg_names" {
     "rabbitmq",
     "ingress",
     "bastion",
-    "eks_control_plane", "eks_node", "jenkins", "jenkins_agent", "runner", "openvpn"
+    "eks_control_plane", "eks_node", "jenkins", "jenkins_agent", "runner", "openvpn", "sonarqube"
   ]
 }
+
