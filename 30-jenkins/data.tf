@@ -29,3 +29,22 @@ data "aws_ssm_parameter" "private_subnet_ids" {
 data "aws_ssm_parameter" "public_subnet_ids" {
   name = "/roboshop/dev/public_subnet_ids"
 }
+data "aws_ami" "sonarqube" {
+  most_recent = true
+  owners      = ["679593333241"] # Solve DevOps
+
+  filter {
+    name   = "name"
+    values = ["SolveDevOps-SonarQube-Server-Ubuntu24.04-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+}
