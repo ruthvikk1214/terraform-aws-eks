@@ -50,3 +50,8 @@ data "aws_ssm_parameter" "openvpn_sg_id" {
 data "aws_ssm_parameter" "ingress_sg_id" {
   name = "/${var.project}/${var.environment}/ingress_sg_id"
 }
+
+data "aws_ssm_parameter" "sonarqube_sg_id" {
+  name = "/${var.project}/${var.environment}/sonarqube_sg_id"
+}
+
