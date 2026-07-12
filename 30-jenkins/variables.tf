@@ -19,3 +19,9 @@ variable "zone_id" {
   type        = string
   default     = "Z031906510N5GWM6MW07L"
 }
+variable "sonar" {
+  default = true
+}
+variable "jenkins" {
+  default = true
+}
