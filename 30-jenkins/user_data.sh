@@ -90,4 +90,19 @@ aws --version
 eksctl version
 kubectl version --client
 
+# -------------------------------
+# Automate EKS Cluster Creation
+# -------------------------------
+echo "Starting automated EKS cluster creation in the background..."
+cat <<'EOF' > /tmp/create_cluster.sh
+#!/bin/bash
+set -e
+cd /tmp
+git clone https://github.com/ruthvikk1214/eksctl.git
+cd eksctl
+eksctl create cluster -f eks.yaml
+EOF
+chmod +x /tmp/create_cluster.sh
+nohup /tmp/create_cluster.sh > /var/log/eks-creation.log 2>&1 &
+
 echo "Jenkins installation completed successfully."

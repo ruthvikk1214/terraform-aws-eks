@@ -5,6 +5,7 @@ resource "aws_instance" "jenkins" {
   vpc_security_group_ids      = [local.jenkins_sg_id]
   user_data                   = file("${path.module}/user_data.sh")
   user_data_replace_on_change = true
+  iam_instance_profile        = aws_iam_instance_profile.jenkins.name
   root_block_device {
     volume_size = 30
     volume_type = "gp3"
@@ -16,6 +17,34 @@ resource "aws_instance" "jenkins" {
     Project     = var.project
   }
 }
+
+resource "aws_iam_role" "jenkins" {
+  name = "${var.project}-${var.environment}-jenkins-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "jenkins" {
+  role       = aws_iam_role.jenkins.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+
+resource "aws_iam_instance_profile" "jenkins" {
+  name = "${var.project}-${var.environment}-jenkins-profile"
+  role = aws_iam_role.jenkins.name
+}
+
 resource "aws_ebs_volume" "jenkins" {
   availability_zone = aws_instance.jenkins.availability_zone
   size              = 30
