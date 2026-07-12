@@ -48,3 +48,6 @@ data "aws_ami" "sonarqube" {
     values = ["x86_64"]
   }
 }
+data "aws_ssm_parameter" "sonar_sg_id" {
+  name = "/roboshop/dev/sonar_sg_id"
+}
