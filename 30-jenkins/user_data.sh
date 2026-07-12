@@ -26,15 +26,23 @@ chmod +x kubectl
 
 mv kubectl /usr/local/bin/
 # -------------------------------
-pvcreate /dev/xvdf
-vgextend RootVG /dev/xvdf
-lvextend -r -l +100%FREE /dev/RootVG/varVol
+# Grow Partition and LVM Volume
+# -------------------------------
+if [ -b /dev/nvme0n1 ]; then
+    growpart /dev/nvme0n1 4 || true
+    pvresize /dev/nvme0n1p4 || true
+elif [ -b /dev/xvda ]; then
+    growpart /dev/xvda 4 || true
+    pvresize /dev/xvda4 || true
+fi
+
+lvextend -r -l +100%FREE /dev/RootVG/varVol || true
 
 # -------------------------------
 # Install required packages
 # -------------------------------
 dnf update -y
-dnf install -y git curl unzip wget fontconfig java-21-openjdk docker awscli
+dnf install -y git curl unzip wget fontconfig java-21-openjdk
 
 # -------------------------------
 # Install Jenkins
