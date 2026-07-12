@@ -85,6 +85,7 @@ resource "aws_instance" "jenkins_agent" {
   subnet_id              = local.public_subnet_id
   vpc_security_group_ids = [local.jenkins_agent_sg_id]
   user_data              = file("jenkins-agent.sh")
+  iam_instance_profile   = aws_iam_instance_profile.jenkins.name
 
   root_block_device {
     volume_size = 50
