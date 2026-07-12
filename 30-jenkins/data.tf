@@ -48,3 +48,6 @@ data "aws_ami" "sonarqube" {
     values = ["x86_64"]
   }
 }
+data "aws_ssm_parameter" "jenkins_agent_sg_id" {
+    name = "/${var.project}/${var.environment}/jenkins_agent_sg_id"
+}
