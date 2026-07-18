@@ -6,22 +6,19 @@ resource "aws_route53_record" "jenkins" {
 
   records = [aws_instance.jenkins.public_ip]
 }
-resource "aws_route53_record" "jenkins_agent" {
-  count   = var.jenkins ? 1 : 0
+resource "aws_route53_record" "jenkins-agent" {
   zone_id = var.zone_id
   name    = "jenkins-agent.${var.domain_name}"
   type    = "A"
   ttl     = 300
 
-  records = [aws_instance.jenkins_agent[0].public_ip]
+  records = [aws_instance.jenkins-agent.public_ip]
 }
 resource "aws_route53_record" "sonarqube" {
-  count   = var.sonar ? 1 : 0
   zone_id = var.zone_id
   name    = "sonarqube.${var.domain_name}"
   type    = "A"
   ttl     = 300
 
-  records = [aws_instance.sonarqube[0].public_ip]
+  records = [aws_instance.sonarqube.public_ip]
 }
-
